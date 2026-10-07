@@ -12,7 +12,7 @@ api_key = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=api_key)
 
 llm = genai.GenerativeModel("gemini-2.5-flash")
-#print(api_key)          
+         
 def rag_pipeline(chunks,index,query):
     retrieved_text = search_word(chunks,index,query)
     prompt =f""" Use the following context to answer 

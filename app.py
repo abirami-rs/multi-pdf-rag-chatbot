@@ -13,8 +13,14 @@ if files:
     st.write("UPLOADED FILES")
     for file in files:
         st.write(file.name)
+    file_names = [file.name for file in files]
+    if "file_names" not in st.session_state or st.session_state.file_names != file_names:
+        st.session_state.file_names = file_names
+        if "index" in st.session_state:
+            del st.session_state["index"]
+
     if "index" not in st.session_state:
-        chunks,index=vector_store(files[0])
+        chunks,index=vector_store(files)
         st.session_state.index=index
         st.session_state.chunks=chunks
     else:
